@@ -1,0 +1,19 @@
+async function main() {
+	//Fetch contract to deploy
+	const Token = await ethers.getContractFactory("VolcanoCoin")
+
+	// Fetch accounts
+	const accounts = await ethers.getSigners()
+
+	// Deploy contract
+	const token = await Token.deploy()
+	await token.deployed()
+	console.log(`Token Deployed to: ${token.address}`)
+}
+
+main()
+	.then(() => process.exit(0))
+	.catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});
